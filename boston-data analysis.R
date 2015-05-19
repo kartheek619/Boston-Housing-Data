@@ -40,19 +40,19 @@ text(boston.rpart)
 boston.test.pred.tree = predict(boston.rpart, boston.test)
 mean((boston.test.pred.tree - boston.test$medv)^2)
 
-
+#Checking the importance of different variables in regression tree
 boston.rpart$variable.importance
 boston.rpart$cptable
 printcp(boston.rpart)
 plotcp(boston.rpart)
 
-
+#Pruning the tree(For getting an optimized tree)
 pruned_tree<-prune(boston.rpart, cp=0.025)
 par(mar=c(2,4,2,4))
 plot(pruned_tree)
 text(pruned_tree)
 
-
+#Performance of pruned tree
 boston.test.pred.tree = predict(pruned_tree, boston.test)
 mean((boston.test.pred.tree - boston.test$medv)^2)
 
